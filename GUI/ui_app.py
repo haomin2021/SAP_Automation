@@ -1,0 +1,42 @@
+import tkinter as tk
+from tkinter import filedialog, messagebox, scrolledtext
+
+class SAPUploaderApp(tk.Frame):
+    def __init__(self, master, start_callback):
+        super().__init__(master)
+        self.master = master
+        self.start_callback = start_callback  # 外部传入启动方法
+
+        self.file_path = tk.StringVar()
+        self.tplnr = tk.StringVar()
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self, text="Select Excel File:").pack()
+        tk.Entry(self, textvariable=self.file_path, width=70).pack(pady=2)
+        tk.Button(self, text="Browse", command=self.browse_file).pack()
+
+        tk.Label(self, text="Technischen Platz:").pack(pady=(10, 0))
+        tk.Entry(self, textvariable=self.tplnr, width=50).pack()
+
+        tk.Button(self, text="Start Import", bg="green", fg="white", command=self.start_callback).pack(pady=10)
+
+        self.log_area = scrolledtext.ScrolledText(self, width=80, height=20)
+        self.log_area.pack()
+
+    def browse_file(self):
+        path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")])
+        if path:
+            self.file_path.set(path)
+
+    def log(self, message):
+        self.log_area.insert(tk.END, message + "\n")
+        self.log_area.see(tk.END)
+        self.update_idletasks()
+
+    def get_file_path(self):
+        return self.file_path.get()
+
+    def get_tplnr(self):
+        return self.tplnr.get()
