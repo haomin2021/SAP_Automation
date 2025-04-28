@@ -13,5 +13,15 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 macOS/Linux:
 source myenv/bin/activate
 
+-------------------------------------------------------------------
+-------------------------------依赖管理-----------------------------
+-------------------------------------------------------------------
+用 pip freeze 导出当前环境所有依赖（适合整个 A 项目）
+pip freeze > requirements.txt
+
+用 pipreqs 自动生成 requirements.txt（适合子模块，比如 A/B）
+pip install pipreqs
+pipreqs /path/to/project --force
+
 安装依赖：
 pip install -r requirements.txt
