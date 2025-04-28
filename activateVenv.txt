@@ -1,5 +1,7 @@
 创建 venv 虚拟环境
 python -m venv myenv
+如果本机使用Python3则
+python3 -m venv myenv
 
 激活 venv 虚拟环境（无需管理员权限）
 Windows（CMD）：
