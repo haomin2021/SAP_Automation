@@ -3,6 +3,7 @@ myenv/
 # Ignore Database files
 *.xlsx
 *.xls
+*.html
 
 # Ignore Python cache files
 __pycache__/
