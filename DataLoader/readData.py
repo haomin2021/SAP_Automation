@@ -1,48 +1,52 @@
 from openpyxl import load_workbook
+import pandas as pd
 
-wb = load_workbook("DataLoader/Polierlinie_4_2025.xlsx")
+wb = load_workbook(r"DataLoader\NSM 1-4 2025.xlsx")
 sheet = wb.active
 
-section_tasks = {}
+section_tasks = []
 current_section = None
 pending_task = None
 
 for row in sheet.iter_rows(values_only=True):
-    # 获取 A列 和 B列的内容（编号和标题/描述）
-    first_cell = row[0]  # A列
-    second_cell = row[1] if len(row) > 1 else None  # B列
+    first_cell = row[0]
+    second_cell = row[1] if len(row) > 1 else None
 
-    # 判断标题：A列为空，B列为字符串，且无 ":"（排除 "Intervall:"）
+    # 标题识别：标题在B列，A列为空
     if first_cell is None and isinstance(second_cell, str) and ":" not in second_cell and len(second_cell.strip()) > 3:
-        # 存储上一段未完成任务
         if pending_task and current_section:
-            section_tasks[current_section].append(pending_task)
+            section_tasks.append((current_section, pending_task))
             pending_task = None
-
         current_section = second_cell.strip()
-        section_tasks[current_section] = []
         continue
 
-    # 判断是否是编号开头的新任务（A列为数字）
+    # 编号行：新任务
     if current_section and isinstance(first_cell, (int, float)):
-        # 存储上一条未完成的任务
         if pending_task:
-            section_tasks[current_section].append(pending_task)
-
+            section_tasks.append((current_section, pending_task))
         desc = str(second_cell).strip() if second_cell else ""
         pending_task = f"{int(first_cell)}. {desc}"
         continue
 
-    # 任务补充行：A列为空，B列有内容，拼接描述
+    # 补充描述行
     if current_section and pending_task and first_cell is None and second_cell:
         pending_task += " " + str(second_cell).strip()
 
-# 最后一条任务
+# 最后一条
 if pending_task and current_section:
-    section_tasks[current_section].append(pending_task)
+    section_tasks.append((current_section, pending_task))
 
-# 输出结果
-for section, tasks in section_tasks.items():
-    print(f"\n== {section} ==")
-    for task in tasks:
-        print(task)
+# 将任务解析为 DataFrame 结构
+df = pd.DataFrame(section_tasks, columns=["Section", "FullTask"])
+
+# 拆分编号与描述
+df["Task No"] = df["FullTask"].str.extract(r"^(\d+)\.")
+df["Description"] = df["FullTask"].str.replace(r"^\d+\.\s*", "", regex=True)
+df = df[["Section", "Task No", "Description"]]
+
+# 显示或保存
+print(df.head())
+
+# 你也可以保存为 Excel 或 CSV
+# df.to_excel("output_tasks.xlsx", index=False)
+# df.to_csv("output_tasks.csv", index=False)
