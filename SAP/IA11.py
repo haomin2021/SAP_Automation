@@ -1,4 +1,4 @@
-# SAP/IA11_ArbeitsplanAnlegen.py
+# SAP/IA11.py
 
 import time
 
