@@ -1,4 +1,17 @@
+import os
+import ssl
 from transformers import pipeline
+import torch
+import urllib3
+
+# 跳过证书验证（适用于 requests + urllib3）
+ssl._create_default_https_context = ssl._create_unverified_context
+urllib3.disable_warnings()
+
+# 禁用 transformers 中的 SSL 校验
+os.environ["TRUSTSTORE_DISABLE"] = "1"
+os.environ["TRANSFORMERS_VERBOSITY"] = "info"
+os.environ["HF_HUB_DISABLE_SSL_VERIFICATION"] = "1"
 
 # 创建摘要生成器
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
