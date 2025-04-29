@@ -1,8 +1,9 @@
 import tkinter as tk
+from tkinter import messagebox
 from SAP.sap_interface import SAPSession
+from SAP.IA11 import IA11Transaction  # 🔥 引入新的 IA11模块
 from DataLoader.excel_loader import load_excel
 from GUI.ui_app import SAPUploaderApp
-from tkinter import messagebox
 
 class SAPController:
     def __init__(self, ui):
@@ -10,6 +11,7 @@ class SAPController:
 
     def start_import(self):
         try:
+            # 1. 连接 SAP
             sap = SAPSession()
             self.ui.log("✅ Connected to SAP")
 
@@ -18,14 +20,21 @@ class SAPController:
                 messagebox.showwarning("Input Required", "Please enter Technischen Platz.")
                 return
 
-            sap.open_ia11(technischer_platz)
+            # 2. 创建 IA11事务处理器
+            ia11 = IA11Transaction(sap.session)
+
+            # 3. 打开 IA11事务
+            ia11.open(technischer_platz)
             self.ui.log(f"✅ IA11 opened for {technischer_platz}")
 
+            # 4. 读取 Excel
             df = load_excel(self.ui.get_file_path())
             self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
 
-            sap.fill_operations(df, self.ui.log)
+            # 5. 执行批量填工序
+            ia11.fill_operations(df, self.ui.log)
             self.ui.log("🎉 All lines completed successfully")
+
         except Exception as e:
             messagebox.showerror("Error", str(e))
             self.ui.log(f"❌ {e}")
