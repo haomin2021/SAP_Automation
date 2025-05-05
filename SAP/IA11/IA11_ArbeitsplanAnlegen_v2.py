@@ -36,7 +36,7 @@ def fill_data_into_sap(session, df, log_callback):
         operation_id = f"wnd[0]/usr/tblSAPLCPDITCTRL_3400/txtPLPOD-VORNR[0,{min(index, 15)}]"
         operation_number = str((index + 1) * 10).zfill(4)
         description_id = f"wnd[0]/usr/tblSAPLCPDITCTRL_3400/txtPLPOD-LTXA1[5,{min(index, 15)}]"
-        description_text = str(row[0][:40])
+        description_text = str(row[0])[:40]
 
         if index >= 16:
             scroll_position = max(0, index - 15)
