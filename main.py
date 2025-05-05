@@ -28,7 +28,7 @@ class SAPController:
             self.ui.log(f"✅ IA11 opened for {technischer_platz}")
 
             # 4. 读取 Excel
-            df = load_excel(self.ui.get_file_path())
+            df = load_excel(self.ui.get_file_path(), mode=self.ui.get_mode())
             self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
 
             # 5. 执行批量填工序
