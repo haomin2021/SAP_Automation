@@ -61,7 +61,30 @@ def load_excel(file_path, mode='raw'):
             df["Description"] = df["FullTask"].str.replace(r"^\d+\.\s*", "", regex=True)
             df = df[["Section", "Task No", "Description"]]
 
-            return df
+            # Flatten to single column if needed
+            lines = []
+            current_section = None
+
+            for _, row in df.iterrows():
+                section = row["Section"]
+                description = str(row["Description"]).strip()
+
+                if section != current_section:
+                    lines.append(f"------{section}------")
+                    current_section = section
+
+                lines.append(f"{description}")
+
+            return pd.DataFrame(lines, columns=["Task"])
         
         except Exception as e:
             raise RuntimeError("Failed to load structured Excel file:\n" + str(e))
+        
+
+        
+#################### Example Usage ####################
+if __name__ == "__main__":
+    # Example usage
+    file_path = r"DataLoader\Polierlinie_4_2025.xlsx"
+    df = load_excel(file_path, mode='structured')
+    print(df.head())
