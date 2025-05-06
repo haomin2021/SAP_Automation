@@ -3,7 +3,7 @@ from tkinter import messagebox
 from SAP.sap_interface import SAPSession
 from SAP.IA11 import IA11Transaction  # 🔥 引入新的 IA11模块
 from DataLoader.excel_loader import load_excel
-from GUI.ui_app import SAPUploaderApp
+from GUI.ui_main import SAPUploaderApp
 
 class SAPController:
     def __init__(self, ui):
@@ -38,6 +38,8 @@ class SAPController:
         except Exception as e:
             messagebox.showerror("Error", str(e))
             self.ui.log(f"❌ {e}")
+
+            
 
 if __name__ == "__main__":
     root = tk.Tk()
