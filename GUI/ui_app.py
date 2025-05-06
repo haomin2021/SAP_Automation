@@ -48,3 +48,19 @@ class SAPUploaderApp(tk.Frame):
 
     def get_mode(self):
         return self.read_mode.get()
+
+
+#################### Example Usage ####################
+if __name__ == "__main__":
+    def dummy_start():
+        file = app.get_file_path()
+        tplnr = app.get_tplnr()
+        mode = app.get_mode()
+
+        app.log(f"Test Start:\nFile: {file}\nTPLNR: {tplnr}\nMode: {mode}")
+
+    root = tk.Tk()
+    root.title("SAP Uploader UI Test")
+    app = SAPUploaderApp(master=root, start_callback=dummy_start)
+    app.pack(padx=10, pady=10)
+    root.mainloop()
