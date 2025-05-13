@@ -10,3 +10,8 @@ myenv/
 # Ignore Python cache files
 __pycache__/
 *.py[cod]
+
+# Ignore build and distribution files
+build/
+dist/
+*.spec

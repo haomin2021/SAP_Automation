@@ -9,6 +9,7 @@ class SAPUploaderApp(tk.Frame):
 
         self.file_path = tk.StringVar()
         self.tplnr = tk.StringVar()
+        self.read_mode = tk.StringVar(value="raw")  # 默认模式
 
         self.create_widgets()
 
@@ -19,6 +20,10 @@ class SAPUploaderApp(tk.Frame):
 
         tk.Label(self, text="Technischen Platz:").pack(pady=(10, 0))
         tk.Entry(self, textvariable=self.tplnr, width=50).pack()
+
+        # 添加读取模式选项
+        tk.Label(self, text="Excel Read Mode:").pack(pady=(10, 0))
+        tk.OptionMenu(self, self.read_mode, "raw", "structured").pack()
 
         tk.Button(self, text="Start Import", bg="green", fg="white", command=self.start_callback).pack(pady=10)
 
@@ -40,3 +45,22 @@ class SAPUploaderApp(tk.Frame):
 
     def get_tplnr(self):
         return self.tplnr.get()
+
+    def get_mode(self):
+        return self.read_mode.get()
+
+
+#################### Example Usage ####################
+if __name__ == "__main__":
+    def dummy_start():
+        file = app.get_file_path()
+        tplnr = app.get_tplnr()
+        mode = app.get_mode()
+
+        app.log(f"Test Start:\nFile: {file}\nTPLNR: {tplnr}\nMode: {mode}")
+
+    root = tk.Tk()
+    root.title("SAP Uploader UI Test")
+    app = SAPUploaderApp(master=root, start_callback=dummy_start)
+    app.pack(padx=10, pady=10)
+    root.mainloop()
