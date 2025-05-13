@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog, ttk, scrolledtext
+from tkinter import filedialog, messagebox, ttk, scrolledtext
 
 class SAP_IA11UploaderApp(tk.Tk):
     def __init__(self, start_callback):
@@ -54,6 +54,19 @@ class SAP_IA11UploaderApp(tk.Tk):
         self.add_block()
 
     def add_block(self):
+        '''
+            Create and display a new input block for SAP batch uploading configuration.
+
+            Each block includes:
+                - An input for the Excel file path with a "Browse" button
+                - A dropdown menu to choose the read mode ("raw" or "structured")
+                - An input for the "Technischer Platz" (technical location)
+                - A "Remove" button to delete the block
+
+            The created block's UI components are stored in a dictionary for later access or removal,
+            and the block is appended to self.blocks for management.
+        '''
+
         block = {} # Create a dictionary to hold block components
 
         # Create a external frame for each block
@@ -66,7 +79,56 @@ class SAP_IA11UploaderApp(tk.Tk):
         frame.columnconfigure(3, weight=0) # Remove button 
         frame.columnconfigure(4, weight=1) # Add Block button
 
+        # ===== Row 0 - Left：Excel File =====
+        tk.Label(frame, text="Excel File:").grid(row=0, column=0, sticky="e", padx=5, pady=2)
+        file_entry = tk.Entry(frame)
+        file_entry.grid(row=0, column=1, sticky="ew", padx=5, pady=2)
+        browse_btn = tk.Button(frame, text="Browse", command=lambda: self.browse_file(file_entry))
+        browse_btn.grid(row=0, column=2, padx=5, pady=2)
+        block["file_entry"] = file_entry
 
+        # ===== Row 0 - Right：Excel Read Mode =====
+        tk.Label(frame, text="Excel Read Mode:").grid(row=0, column=3, sticky="e", padx=5, pady=2)
+        read_mode = tk.StringVar(value="raw")
+        mode_combo = ttk.Combobox(frame, textvariable=read_mode, values=["raw", "structured"], state="readonly", width=10)
+        mode_combo.grid(row=0, column=4, sticky="ew", padx=5, pady=2)
+        block["mode_var"] = read_mode
 
+        # ===== Row 1 - Left：Technischer Platz =====
+        tk.Label(frame, text="Technischer Platz:").grid(row=1, column=0, sticky="e", padx=5, pady=2)
+        platz_entry = tk.Entry(frame)
+        platz_entry.grid(row=1, column=1, columnspan=2, sticky="ew", padx=5, pady=2)
+        block["tplnr_entry"] = platz_entry
 
+        # ===== Row 1 - Right：Remove Button =====
+        remove_btn = tk.Button(frame, text="Remove", command=lambda: self.remove_block(block))
+        remove_btn.grid(row=1, column=4, sticky="e", padx=5, pady=2)
 
+        self.blocks.append(block)
+
+    def remove_block(self, block):
+        '''
+            Remove a block from the UI and the internal list of blocks.
+
+            Args:
+                block (dict): The block dictionary containing UI components to be removed.
+        '''
+        block["frame"].destroy()
+        self.blocks.remove(block)
+
+    def stop_import(self):
+        # Placeholder for stopping import logic
+        messagebox.showinfo("Info", "Import stopped.")
+        self.log("Import stopped.")
+
+    def browse_file(self, entry_widget):
+        '''
+            Open a file dialog to select an Excel file and insert the selected path into the entry widget.
+
+            Args:
+                entry_widget (tk.Entry): The entry widget where the selected file path will be inserted.
+        '''
+        file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx *.xls")])
+        if file_path:
+            entry_widget.delete(0, tk.END)
+            entry_widget.insert(0, file_path)
