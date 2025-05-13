@@ -32,7 +32,8 @@ class SAP_IA11UploaderApp(tk.Tk):
         self.scroll_frame = tk.Frame(canvas)
 
         self.scroll_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
-        canvas.create_window((0, 0), window=self.scroll_frame, anchor="nw")
+        self.scroll_window = canvas.create_window((0, 0), window=self.scroll_frame, anchor="nw", tags="frame_window")
+        canvas.bind("<Configure>", lambda e: canvas.itemconfig("frame_window", width=e.width - scrollbar.winfo_width()))
         canvas.configure(yscrollcommand=scrollbar.set)
 
         canvas.pack(side="left", fill="both", expand=True)
@@ -73,6 +74,8 @@ class SAP_IA11UploaderApp(tk.Tk):
         frame = tk.Frame(self.scroll_frame, relief="groove", borderwidth=2, padx=10, pady=10)
         frame.pack(fill="x", pady=5)
 
+        block["frame"] = frame
+
         # Set column weights for resizing
         frame.columnconfigure(1, weight=3) # File Entry
         frame.columnconfigure(2, weight=0) # Browse button
@@ -90,7 +93,7 @@ class SAP_IA11UploaderApp(tk.Tk):
         # ===== Row 0 - Right：Excel Read Mode =====
         tk.Label(frame, text="Excel Read Mode:").grid(row=0, column=3, sticky="e", padx=5, pady=2)
         read_mode = tk.StringVar(value="raw")
-        mode_combo = ttk.Combobox(frame, textvariable=read_mode, values=["raw", "structured"], state="readonly", width=10)
+        mode_combo = ttk.Combobox(frame, textvariable=read_mode, values=["Raw", "Structured"], state="readonly", width=10)
         mode_combo.grid(row=0, column=4, sticky="ew", padx=5, pady=2)
         block["mode_var"] = read_mode
 
@@ -132,3 +135,55 @@ class SAP_IA11UploaderApp(tk.Tk):
         if file_path:
             entry_widget.delete(0, tk.END)
             entry_widget.insert(0, file_path)
+
+    def start_all(self):
+        '''
+            Iterate through all blocks and execute the start callback with the provided parameters.
+
+            Each block's file path, Technischer Platz, and read mode are retrieved and passed to the start callback.
+            If any required field is missing, a log message is generated.
+        '''
+        for i, block in enumerate(self.blocks):
+            file_path = block["file_entry"].get()
+            tplnr = block["tplnr_entry"].get()
+            mode = block["mode_var"].get()
+
+            if not file_path or not tplnr:
+                self.log(f"[Block {i+1}] Missing file or Technischer Platz.")
+                continue
+
+            self.log(f"--- Block {i+1} ---")
+            self.log(f"File: {file_path}")
+            self.log(f"TPLNR: {tplnr}")
+            self.log(f"Mode: {mode}")
+            self.start_callback(file_path, tplnr, mode)
+
+    def log(self, message):
+        '''
+            Append a message to the log area and ensure it is visible.
+
+            Args:
+                message (str): The message to be logged.
+        '''
+        self.log_area.insert(tk.END, message + "\n")
+        self.log_area.see(tk.END)
+        self.update_idletasks()
+
+#################### Example Usage ####################
+
+def dummy_start(file, tplnr, mode):
+    print(f"Simulating SAP upload for: {file}, {tplnr}, Mode: {mode}")
+
+if __name__ == "__main__":
+    app = SAP_IA11UploaderApp(start_callback=dummy_start)
+    app.mainloop()
+
+
+
+
+
+
+
+
+
+
