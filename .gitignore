@@ -6,6 +6,7 @@ myenv/
 *.xlsx
 *.xls
 *.html
+*.htm
 
 # Ignore Python cache files
 __pycache__/
