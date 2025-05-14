@@ -100,7 +100,9 @@ class SAP_IA11UploaderApp(tk.Tk):
         # ===== Row 1 - Left：Technischer Platz =====
         tk.Label(frame, text="Technischer Platz:").grid(row=1, column=0, sticky="e", padx=5, pady=2)
         platz_entry = tk.Entry(frame)
-        platz_entry.grid(row=1, column=1, columnspan=2, sticky="ew", padx=5, pady=2)
+        platz_entry.grid(row=1, column=1, sticky="ew", padx=5, pady=2)
+        tplnr_browse_btn = tk.Button(frame, text="Browse", command=lambda: self.browse_tplnr(platz_entry))
+        tplnr_browse_btn.grid(row=1, column=2, padx=5, pady=2)
         block["tplnr_entry"] = platz_entry
 
         # ===== Row 1 - Right：Remove Button =====
@@ -135,6 +137,18 @@ class SAP_IA11UploaderApp(tk.Tk):
         if file_path:
             entry_widget.delete(0, tk.END)
             entry_widget.insert(0, file_path)
+
+    def browse_tplnr(self, entry_widget):
+        '''
+            Open a file dialog to select a Technischer Platz and insert the selected path into the entry widget.
+
+            Args:
+                entry_widget (tk.Entry): The entry widget where the selected Technischer Platz will be inserted.
+        '''
+        tplnr = filedialog.askopenfilename(filetypes=[("TPLNR files", "*.tplnr")])
+        if tplnr:
+            entry_widget.delete(0, tk.END)
+            entry_widget.insert(0, tplnr)
 
     def start_all(self):
         '''
