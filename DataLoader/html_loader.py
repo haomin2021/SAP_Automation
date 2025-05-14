@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # 读取你的 HTML 文件
-with open('DataLoader\TP.HTML', 'r', encoding='utf-8') as f:
+with open('Resources\Technischer Platz\TP.HTML', 'r', encoding='utf-8') as f:
     html_content = f.read()
 
 # 用 BeautifulSoup 解析

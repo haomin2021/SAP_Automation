@@ -1,0 +1,450 @@
+Technischer Platz    6200
+Bezeichnung     Heidelberg
+
+  6200                                     Heidelberg
+   |
+   |--    6200-GB                                  Gebäude
+   |   |
+   |   |--    6200-GB-EUR                              Gebäude Europa
+   |   |   |
+   |   |   |---   6200-GB-EUR-DACH                         Gebäude Europa Dach
+   |   |   |---   6200-GB-EUR-EG00                         Gebäude Europa Erdgeschoss
+   |   |   |---   6200-GB-EUR-KG00                         Gebäude Europa Keller
+   |   |   |---   6200-GB-EUR-LICT                         Gebäude Europa Licht
+   |   |   |---   6200-GB-EUR-OG00                         Gebäude Europa Obergeschoss
+   |   |   |--    6200-GB-EUR-PFOR                         Gebäude Europa Pforte
+   |   |   |   |
+   |   |   |   |---   6200-GB-EUR-PFOR-LICT                    Gebäude Europa Pforte Licht
+   |   |   |   |---   6200-GB-EUR-PFOR-TTFE                    Gebäude Europa Pforte Tore Türen Fenster
+   |   |   |
+   |   |   |--    6200-GB-EUR-TTFE                         Gebäude Europa  Tore Türen Fenster
+   |   |       |
+   |   |       |---   6200-GB-EUR-TTFE-BRST                    Gebäude Europa Brandschutztüren
+   |   |
+   |   |---   6200-GB-G48-KLIM                         Klimageräte
+   |   |--    6200-GB-GAR                              Garage
+   |   |   |
+   |   |   |---   6200-GB-GAR-DACH                         Garage Dach
+   |   |   |---   6200-GB-GAR-LICT                         Garage Licht
+   |   |   |--    6200-GB-GAR-TTFE                         Garage Türe Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-GAR-TTFE-BRST                    Garage Brandschutztüren
+   |   |
+   |   |--    6200-GB-GEH                              Gehlsengebäude allgemein
+   |   |   |
+   |   |   |---   6200-GB-GEH-DACH                         Gehlsengebäude Dach
+   |   |   |---   6200-GB-GEH-LICT                         Gehlsengebäude Licht
+   |   |   |--    6200-GB-GEH-TTFE                         Gehlsengebäude Türe Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-GEH-TTFE-BRST                    Gehlsengebäude Brandschutztüren
+   |   |
+   |   |--    6200-GB-H01                              Halle 1 allgemein
+   |   |   |
+   |   |   |---   6200-GB-H01-DACH                         Halle 1 Dach
+   |   |   |---   6200-GB-H01-EG01                         Halle 1 Erdgeschoss
+   |   |   |---   6200-GB-H01-KG01                         Halle 1 Kellergeschoss
+   |   |   |---   6200-GB-H01-LICT                         Halle 1 Licht
+   |   |   |--    6200-GB-H01-TTFE                         Halle 1 Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-H01-TTFE-BRST                    Halle 1 Brandschutztüren
+   |   |
+   |   |--    6200-GB-H02                              Halle 2 allgemein
+   |   |   |
+   |   |   |---   6200-GB-H02-DACH                         Halle 2 Dach
+   |   |   |---   6200-GB-H02-EG02                         Halle 2 Erdgeschoss
+   |   |   |---   6200-GB-H02-KG02                         Halle 2 Kellergeschoss
+   |   |   |---   6200-GB-H02-LICT                         Halle 2 Licht
+   |   |   |---   6200-GB-H02-OG02                         Halle 2 Obergeschoss
+   |   |   |--    6200-GB-H02-TTFE                         Halle 1 Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-H02-TTFE-BRST                    Halle 1 Brandschutztüren
+   |   |
+   |   |--    6200-GB-H03                              Halle 3 allgemein
+   |   |   |
+   |   |   |---   6200-GB-H03-DACH                         Halle 3 Dach
+   |   |   |---   6200-GB-H03-LICT                         Halle 3 Licht
+   |   |   |--    6200-GB-H03-TTFE                         Halle 3 Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-H03-TTFE-BRST                    Halle 3 Brandschutztüren
+   |   |
+   |   |--    6200-GB-H04                              Halle 4 allgemein
+   |   |   |
+   |   |   |---   6200-GB-H04-DACH                         Halle 4 Dach
+   |   |   |---   6200-GB-H04-LICT                         Halle 4 Licht
+   |   |   |--    6200-GB-H04-TTFE                         Halle 4 Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-H04-TTFE-BRST                    Halle 4 Brandschutztüren
+   |   |
+   |   |--    6200-GB-INS                              Instandhaltung allgemein
+   |   |   |
+   |   |   |---   6200-GB-INS-DACH                         Instandhaltung Dach
+   |   |   |---   6200-GB-INS-LICT                         Instandhaltung Licht
+   |   |   |--    6200-GB-INS-TTFE                         Instandhaltung Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-INS-TTFE-BRST                    Instandhaltung Brandschutztüren
+   |   |
+   |   |--    6200-GB-LAG                              Lagergebäude allgemein
+   |   |   |
+   |   |   |---   6200-GB-LAG-DACH                         Lagergebäude Dach
+   |   |   |---   6200-GB-LAG-LICT                         Lagergebäude Licht
+   |   |   |--    6200-GB-LAG-TTFE                         Lagergebäude Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-LAG-TTFE-BRST                    Lagergebäude Brandschutztüren
+   |   |
+   |   |--    6200-GB-LEE                              Leerguthalle allgemein
+   |   |   |
+   |   |   |---   6200-GB-LEE-0002                         Neue Leichtbauhalle Herchenbach
+   |   |   |---   6200-GB-LEE-DACH                         Leerguthalle Dach
+   |   |   |---   6200-GB-LEE-LICT                         Leerguthalle Licht
+   |   |   |--    6200-GB-LEE-TTFE                         Leerguthalle Türen Tore Fenster
+   |   |       |
+   |   |       |---   6200-GB-LEE-TTFE-BRST                    Leerguthalle Brandschutztüren
+   |   |
+   |   |--    6200-GB-SPZ                              Sprinklerzentrale allgemein
+   |       |
+   |       |---   6200-GB-SPZ-DACH                         Sprinklerzentrale Dach
+   |       |---   6200-GB-SPZ-LICT                         Sprinklerzentrale Licht
+   |       |--    6200-GB-SPZ-TTFE                         Sprinklerzentrale Türen Tore Fenster
+   |           |
+   |           |---   6200-GB-SPZ-TTFE-BRST                    Sprinklerzentrale Brandschutztüren
+   |
+   |--    6200-PR                                  Produktion
+   |   |
+   |   |--    6200-PR-H10                              Halle 1
+   |   |   |
+   |   |   |---   6200-PR-H10-GR00-MS  -ALLE               Multisegment alle
+   |   |   |---   6200-PR-H10-GR00-MS01                    Multisegment 1
+   |   |   |---   6200-PR-H10-GR00-MS03                    Multisegment 3
+   |   |   |---   6200-PR-H10-GR00-MS04                    Multisegment 4
+   |   |   |---   6200-PR-H10-GR00-MS05                    Multisegment 5
+   |   |   |---   6200-PR-H10-GR00-MS06                    Multisegment 6
+   |   |   |---   6200-PR-H10-GR00-MS07                    Multisegment 7
+   |   |   |---   6200-PR-H10-GR00-MS09                    Multisegment 9
+   |   |   |---   6200-PR-H10-GR00-MS10                    Multisegment 10
+   |   |   |---   6200-PR-H10-GR00-MS11                    Multisegment 11
+   |   |   |---   6200-PR-H10-GR00-MS12                    Multisegment 12
+   |   |   |---   6200-PR-H10-GR00-MS13                    Multisegment 13
+   |   |   |---   6200-PR-H10-GR00-MS14                    Multisegment 14
+   |   |   |---   6200-PR-H10-GR00-MS21                    Multisegment 21
+   |   |   |---   6200-PR-H10-GR00-MS22                    Multisegment 22
+   |   |   |---   6200-PR-H10-GR00-MS23                    Multisegment 23
+   |   |   |---   6200-PR-H10-GR00-RTP -ALLE               RTP und RTPR
+   |   |   |---   6200-PR-H10-GR00-RTP1                    Rundtaktpresse 1
+   |   |   |---   6200-PR-H10-GR00-RTP2                    Rundtaktpresse 2
+   |   |   |---   6200-PR-H10-GR00-RTP3                    Rundtaktpresse 3
+   |   |   |---   6200-PR-H10-GR00-RTP4                    Rundtaktpresse 4
+   |   |   |---   6200-PR-H10-GR00-RTP5                    Rundtaktpresse 5
+   |   |   |---   6200-PR-H10-GR00-RTP6                    Rundtaktpresse 6
+   |   |   |---   6200-PR-H10-GR00-RTP7                    Rundtaktpresse 7
+   |   |   |---   6200-PR-H10-GR00-RTP8                    Rundtaktpresse 8
+   |   |   |---   6200-PR-H10-GR00-SEXT-0007               Sexta 7 / MS 21
+   |   |   |---   6200-PR-H10-GR00-SEXT-0008               Sexta 8 / MS 22
+   |   |   |---   6200-PR-H10-GR01-RTPR-0015               Rundtaktpresse 15
+   |   |   |---   6200-PR-H10-GR01-RTPR-0017               Rundtaktpresse 17
+   |   |   |---   6200-PR-H10-GR01-RTPR-0018               Rundtaktpresse 18
+   |   |   |---   6200-PR-H10-GR01-RTPR-0019               Rundtaktpresse 19
+   |   |   |---   6200-PR-H10-GR01-RTPR-0020               Rundtaktpresse 20
+   |   |   |---   6200-PR-H10-GR03-TORN                    Tornado Reinigung
+   |   |   |---   6200-PR-H10-GR06-FRAE-0002               Fräsmaschine 2
+   |   |   |---   6200-PR-H10-GR06-FRAE-0003               Fräsmaschine 3
+   |   |   |---   6200-PR-H10-GR06-FRAE-0004               Fräsmaschine 4
+   |   |   |---   6200-PR-H10-GR06-FRAE-ALLE               Fräsmaschine alle
+   |   |   |--    6200-PR-H10-GR08-POLI                    Polieren allgemein
+   |   |   |   |
+   |   |   |   |---   6200-PR-H10-GR08-POLI-0005               Poliermaschine 5
+   |   |   |   |---   6200-PR-H10-GR08-POLI-0406               Poliermaschine 4+6
+   |   |   |
+   |   |   |---   6200-PR-H10-GR10-AVB0                    Abwasservorbehandlungsanlage
+   |   |   |---   6200-PR-H10-GR14-HPT4                    HPT 4
+   |   |
+   |   |--    6200-PR-H20                              Halle 2 Erdgeschoss
+   |   |   |
+   |   |   |---   6200-PR-H20-GR00-MS15                    Multisegment 15
+   |   |   |---   6200-PR-H20-GR00-MS17                    Multisegment 17
+   |   |   |---   6200-PR-H20-GR00-MS18                    Multisegment 18
+   |   |   |---   6200-PR-H20-GR00-MS19                    Multisegment 19
+   |   |   |---   6200-PR-H20-GR00-MS20                    Multisegment 20
+   |   |   |---   6200-PR-H20-GR00-MS24                    Multisegment 24
+   |   |   |---   6200-PR-H20-GR00-SEXT-0001               Sexta 1 / MS 15
+   |   |   |---   6200-PR-H20-GR00-SEXT-0003               Sexta 3 / MS 17
+   |   |   |---   6200-PR-H20-GR00-SEXT-0004               Sexta 4 / MS 18
+   |   |   |---   6200-PR-H20-GR00-SEXT-0005               Sexta 5 / MS 19
+   |   |   |---   6200-PR-H20-GR00-SEXT-0006               Sexta 6 / MS 20
+   |   |   |---   6200-PR-H20-GR00-SEXT-0077               Sexta 7 / MS 24
+   |   |   |---   6200-PR-H20-GR00-SEXT-ALLE               SEXTA alle
+   |   |   |---   6200-PR-H20-GR04-RAST-PRES               Raster Presse
+   |   |   |---   6200-PR-H20-GR10-RICH-ALT0               "Induktive Richtmaschine ""Alt"""
+   |   |   |---   6200-PR-H20-GR10-RICH-NEU0               "Induktive Richtmaschine ""Neu"""
+   |   |   |---   6200-PR-H20-GR10-SBA0                    Stahlbeschichtungsanlage
+   |   |   |---   6200-PR-H20-GR30-WKZG-BAU0-PAP           Werkzeugbau Papier
+   |   |   |---   6200-PR-H20-GR30-WKZG-BAU0-STA           Werkzeugbau Stahl
+   |   |
+   |   |--    6200-PR-H21                              Halle 2 Obergeschoss
+   |   |   |
+   |   |   |---   6200-PR-H21-GR03-DOPP-PRES               Hydraulik Doppelständer Presse 630 KN
+   |   |   |---   6200-PR-H21-GR03-DUNK                    Papier Hydraulik Presse Dunkes
+   |   |   |---   6200-PR-H21-GR03-LAUF                    Lauffer RTP 100
+   |   |   |---   6200-PR-H21-GR05-HYDR-PRES               Hydraulik Dunkes 40 T
+   |   |   |---   6200-PR-H21-GR05-ROLL-SCHN               Rollenschneidmaschine
+   |   |   |---   6200-PR-H21-GR08-POLI                    Stand Alone Poliermaschine Musterbau
+   |   |   |---   6200-PR-H21-GR12-CTC0                    "Papierimprägnieranlage ""CTC """
+   |   |   |---   6200-PR-H21-GR20-PRUE                    Prüfstände
+   |   |   |---   6200-PR-H21-GR21-MUST-BAU0               Musterbau allgemein
+   |   |
+   |   |--    6200-PR-H40                              Halle 4
+   |   |   |
+   |   |   |---   6200-PR-H40-GR04-MUEW                    Müller Weingarten 630T Presse
+   |   |   |---   6200-PR-H40-GR04-SCPR                    Schaal Stahl Segment 100 T Presse
+   |   |   |---   6200-PR-H40-GR14-HPT1                    HPT 1
+   |   |
+   |   |--    6200-PR-H80                              Instandhaltung
+   |   |   |
+   |   |   |---   6200-PR-H80-GR35-INST                    Instandhaltung allgemein
+   |   |
+   |   |--    6200-PR-RSB                              Reilingen S&B
+   |       |
+   |       |---   6200-PR-RSB-GR03-BUER-0001               Hydraulik Presse Bürkle SE 200T
+   |       |---   6200-PR-RSB-GR03-BUER-0002               Hydraulik Presse Bürkle SE 200T
+   |       |---   6200-PR-RSB-GR03-GUNS-ERBE               Gunst Erben Hydraulikpresse   4S - 150t
+   |       |---   6200-PR-RSB-GR03-URKE-0001               Lauffer Hydraulikpresse  URKE 200
+   |       |---   6200-PR-RSB-GR03-URKE-0002               Lauffer Hydraulikpresse  URKE 200
+   |       |---   6200-PR-RSB-GR03-URKE-0003               Lauffer Hydraulikpresse  URKE 160
+   |       |---   6200-PR-RSB-GR16-BRB0                    Bremsbandfertigung
+   |
+   |--    6200-TE                                  Technik
+   |   |
+   |   |--    6200-TE-AUS                              Aussenbereich Werk
+   |   |   |
+   |   |   |---   6200-TE-AUS-GR46-DACH                    Dach allgemein
+   |   |   |---   6200-TE-AUS-GR46-LEER-HALL               Leerguthalle
+   |   |   |---   6200-TE-AUS-GR46-LICH-PARK               Beleuchtung Parkplatz
+   |   |   |---   6200-TE-AUS-GR46-OEL0-ABSC               Öl Abscheider
+   |   |   |---   6200-TE-AUS-GR46-PAPI-PRES               Papierpresse
+   |   |   |---   6200-TE-AUS-GR46-PFOR-STEU               Pforte Steuerung
+   |   |   |---   6200-TE-AUS-GR46-REGA                    Regale
+   |   |   |---   6200-TE-AUS-GR46-TORE                    Werkstore
+   |   |
+   |   |--    6200-TE-EUR                              Europagebäude
+   |   |   |
+   |   |   |--    6200-TE-EUR-GR40-TECH                    Europagebäude Technik allgemein
+   |   |       |
+   |   |       |---   6200-TE-EUR-GR40-TECH-ABSP-KLA           Europagebäude Technik Absperrklappe
+   |   |       |---   6200-TE-EUR-GR40-TECH-BMZ0               Europagebäude Technik Brandmeldezentrale
+   |   |       |---   6200-TE-EUR-GR40-TECH-EXPL-ALA           Europagebäude Technik Explosionsalarmmel
+   |   |       |---   6200-TE-EUR-GR40-TECH-GAS0-WAR           Europagebäude Technik Gaswarnanalge
+   |   |       |---   6200-TE-EUR-GR40-TECH-KAME               Europagebäude Technik Kamerasystem
+   |   |       |---   6200-TE-EUR-GR40-TECH-LIFT               Europagebäude Technik Hiro Lift
+   |   |       |---   6200-TE-EUR-GR40-TECH-TELE               Europagebäude Technik Telefonanalge
+   |   |
+   |   |--    6200-TE-GEH                              Gehlsengebäude
+   |   |   |
+   |   |   |--    6200-TE-GEH-GR45                         Gehlsengebäude Technik allgemein
+   |   |       |
+   |   |       |---   6200-TE-GEH-GR45-BRAN-MELD-ANL           Gehlsengebäude Technik Brandmeldeanlage
+   |   |       |---   6200-TE-GEH-GR45-HEIZ                    Gehlsengebäude Technik Heizung
+   |   |
+   |   |--    6200-TE-H10                              Halle 1
+   |   |   |
+   |   |   |---   6200-TE-H10-GR41-ABSA                    Halle 1 Technik Staub und Schnipselabsau
+   |   |   |---   6200-TE-H10-GR41-AUFZ                    Halle 1 Technik Hiro Lift
+   |   |   |---   6200-TE-H10-GR41-DRUC-LUFT               Halle 1 Technik  Drucklufterzeugung
+   |   |   |---   6200-TE-H10-GR41-HEIZ                    Halle 1 Technik Heizung
+   |   |   |---   6200-TE-H10-GR41-KUEH-WASS-VER           Halle 1 Technik Kühlwasserversorgung
+   |   |   |---   6200-TE-H10-GR41-LIFT                    Halle 1 Technik Hänel Lift
+   |   |   |---   6200-TE-H10-GR41-SPAN-VERS               Halle 1 Technik Stromversorgung
+   |   |   |---   6200-TE-H10-GR41-TORE                    Halle 1 Technik Tore
+   |   |   |---   6200-TE-H10-GR41-TROC-EIS0-STR           Halle 1 Technik Trockeneis Strahlgerät
+   |   |   |---   6200-TE-H10-GR41-VERS                    Halle 1 Technik VERS
+   |   |   |---   6200-TE-H10-GR41-WAAG                    Halle 1 Technik Bodenwaage
+   |   |   |---   6200-TE-H10-GR70-AUFZ                    Halle 1 Technik Schindler Lastenaufzug
+   |   |   |---   6200-TE-H10-GR70-KRAN                    Halle 1 Technik Krananlagen
+   |   |
+   |   |--    6200-TE-H20                              Halle 2
+   |   |   |
+   |   |   |---   6200-TE-H20-GR42-ABLU                    Halle 2 Technik Abluftanlagen
+   |   |   |---   6200-TE-H20-GR42-ABSA                    Halle 2 Technik Schnipselabsaugung
+   |   |   |---   6200-TE-H20-GR42-AUFZ-LAST               Halle 2 Technik Lastenaufzug Haushahn
+   |   |   |---   6200-TE-H20-GR42-DRUC-LUFT               Halle 2 Technik Drucklufterzeugung
+   |   |   |---   6200-TE-H20-GR42-HEBE-ANLA               Hebeanlage Keller Halle 2 Grube
+   |   |   |---   6200-TE-H20-GR42-HEIZ                    Halle 2 Technik Heizung
+   |   |   |---   6200-TE-H20-GR42-KUEH-WASS-VER           Halle 2 Technik Kühlwasserversorgung
+   |   |   |---   6200-TE-H20-GR42-LIFT                    Halle 2 Technik Hänel Lift
+   |   |   |---   6200-TE-H20-GR42-SAUG-SODA               Halle 2 Technik Soda Sauger
+   |   |   |---   6200-TE-H20-GR42-SICH-EINR               Halle 2 Technik Sicherheitseinrichtungen
+   |   |   |---   6200-TE-H20-GR42-SPAN-VERS               Halle 2 Technik Stromversorgung
+   |   |   |---   6200-TE-H20-GR42-TANK-ANLA               Halle 2 Technik Tank Anlagen Nord und Sü
+   |   |   |---   6200-TE-H20-GR42-TORN                    Halle 2 Technik Tore Nord
+   |   |   |---   6200-TE-H20-GR42-TORS                    Halle 2 Technik Tore Süd
+   |   |   |---   6200-TE-H20-GR42-WAAG                    Halle 2 Technik Boden Waage
+   |   |   |---   6200-TE-H20-GR70-KRAN                    Halle 2 Technik Krananlagen
+   |   |
+   |   |--    6200-TE-H40                              Halle 4
+   |       |
+   |       |---   6200-TE-H40-GR44-HEIZ                    Halle 4 Technik Heizung
+   |       |---   6200-TE-H40-GR44-RAUC-ABZU               Halle 4 Technik Rauch Abzug
+   |       |---   6200-TE-H40-GR44-REGA-INST               Halle 4 Technik Regal Instandhaltung
+   |       |---   6200-TE-H40-GR44-SPAN-VERS               Halle 4 Technik Stromversorgung
+   |       |---   6200-TE-H40-GR44-SPRI-ANLA               Halle 4 Technik Sprinkler Anlage
+   |       |---   6200-TE-H40-GR44-STIC-TANK-ANL           Halle 4 Technik Stickstoff Tankanlage
+   |       |---   6200-TE-H40-GR44-TORE                    Halle 4 Technik Tore
+   |       |---   6200-TE-H40-GR44-WAAG                    Halle 4 Technik Boden Waage
+   |
+   |--    6200-ZZ                                  Letzter Technischer Platz
+       |
+       |--    6200-ZZ-LOE                              Techn Platz für gelöschte TP und Equipme
+           |
+           |--    6200-GB-H01-HEIZ                         Gebäude
+           |   |
+           |   |--    6200-GB-H01-HEIZ-EUR                     Gebäude Europa
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-EUR -DACH               Gebäude Europa Dach
+           |   |   |---   6200-GB-H01-HEIZ-EUR -EG00               Gebäude Europa Erdgeschoss
+           |   |   |---   6200-GB-H01-HEIZ-EUR -KG00               Gebäude Europa Keller
+           |   |   |---   6200-GB-H01-HEIZ-EUR -LICT               Gebäude Europa Licht
+           |   |   |---   6200-GB-H01-HEIZ-EUR -OG00               Gebäude Europa Obergeschoss
+           |   |   |--    6200-GB-H01-HEIZ-EUR -PFOR               Gebäude Europa Pforte
+           |   |   |   |
+           |   |   |   |---   6200-GB-H01-HEIZ-EUR -PFOR-LICT          Gebäude Europa Pforte Licht
+           |   |   |   |---   6200-GB-H01-HEIZ-EUR -PFOR-TTFE          Gebäude Europa Pforte Tore Türen Fenster
+           |   |   |
+           |   |   |--    6200-GB-H01-HEIZ-EUR -TTFE               Gebäude Europa  Tore Türen Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-EUR -TTFE-BRST          Gebäude Europa Brandschutztüren
+           |   |
+           |   |---   6200-GB-H01-HEIZ-G48 -KLIM               Klimageräte
+           |   |--    6200-GB-H01-HEIZ-GAR                     Garage
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-GAR -DACH               Garage Dach
+           |   |   |---   6200-GB-H01-HEIZ-GAR -LICT               Garage Licht
+           |   |   |--    6200-GB-H01-HEIZ-GAR -TTFE               Garage Türe Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-GAR -TTFE-BRST          Garage Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-GEH                     Gehlsengebäude allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-GEH -DACH               Gehlsengebäude Dach
+           |   |   |---   6200-GB-H01-HEIZ-GEH -LICT               Gehlsengebäude Licht
+           |   |   |--    6200-GB-H01-HEIZ-GEH -TTFE               Gehlsengebäude Türe Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-GEH -TTFE-BRST          Gehlsengebäude Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-H01                     Halle 1 allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-H01 -DACH               Halle 1 Dach
+           |   |   |---   6200-GB-H01-HEIZ-H01 -EG01               Halle 1 Erdgeschoss
+           |   |   |---   6200-GB-H01-HEIZ-H01 -KG01               Halle 1 Kellergeschoss
+           |   |   |---   6200-GB-H01-HEIZ-H01 -LICT               Halle 1 Licht
+           |   |   |--    6200-GB-H01-HEIZ-H01 -TTFE               Halle 1 Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-H01 -TTFE-BRST          Halle 1 Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-H02                     Halle 2 allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-H02 -DACH               Halle 2 Dach
+           |   |   |---   6200-GB-H01-HEIZ-H02 -EG02               Halle 2 Erdgeschoss
+           |   |   |---   6200-GB-H01-HEIZ-H02 -KG02               Halle 2 Kellergeschoss
+           |   |   |---   6200-GB-H01-HEIZ-H02 -LICT               Halle 2 Licht
+           |   |   |---   6200-GB-H01-HEIZ-H02 -OG02               Halle 2 Obergeschoss
+           |   |   |--    6200-GB-H01-HEIZ-H02 -TTFE               Halle 1 Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-H02 -TTFE-BRST          Halle 1 Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-H03                     Halle 3 allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-H03 -DACH               Halle 3 Dach
+           |   |   |---   6200-GB-H01-HEIZ-H03 -LICT               Halle 3 Licht
+           |   |   |--    6200-GB-H01-HEIZ-H03 -TTFE               Halle 3 Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-H03 -TTFE-BRST          Halle 3 Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-H04                     Halle 4 allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-H04 -DACH               Halle 4 Dach
+           |   |   |---   6200-GB-H01-HEIZ-H04 -LICT               Halle 4 Licht
+           |   |   |--    6200-GB-H01-HEIZ-H04 -TTFE               Halle 4 Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-H04 -TTFE-BRST          Halle 4 Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-INS                     Instandhaltung allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-INS -DACH               Instandhaltung Dach
+           |   |   |---   6200-GB-H01-HEIZ-INS -LICT               Instandhaltung Licht
+           |   |   |--    6200-GB-H01-HEIZ-INS -TTFE               Instandhaltung Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-INS -TTFE-BRST          Instandhaltung Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-LAG                     Lagergebäude allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-LAG -DACH               Lagergebäude Dach
+           |   |   |---   6200-GB-H01-HEIZ-LAG -LICT               Lagergebäude Licht
+           |   |   |--    6200-GB-H01-HEIZ-LAG -TTFE               Lagergebäude Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-LAG -TTFE-BRST          Lagergebäude Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-LEE                     Leerguthalle allgemein
+           |   |   |
+           |   |   |---   6200-GB-H01-HEIZ-LEE -DACH               Leerguthalle Dach
+           |   |   |---   6200-GB-H01-HEIZ-LEE -LICT               Leerguthalle Licht
+           |   |   |--    6200-GB-H01-HEIZ-LEE -TTFE               Leerguthalle Türen Tore Fenster
+           |   |       |
+           |   |       |---   6200-GB-H01-HEIZ-LEE -TTFE-BRST          Leerguthalle Brandschutztüren
+           |   |
+           |   |--    6200-GB-H01-HEIZ-SPZ                     Sprinklerzentrale allgemein
+           |       |
+           |       |---   6200-GB-H01-HEIZ-SPZ -DACH               Sprinklerzentrale Dach
+           |       |---   6200-GB-H01-HEIZ-SPZ -LICT               Sprinklerzentrale Licht
+           |       |--    6200-GB-H01-HEIZ-SPZ -TTFE               Sprinklerzentrale Türen Tore Fenster
+           |           |
+           |           |---   6200-GB-H01-HEIZ-SPZ -TTFE-BRST          Sprinklerzentrale Brandschutztüren
+           |
+           |---   6200-PR-H10-GR01-RTPR-0016               Rundtaktpresse 16
+           |---   6200-PR-H10-GR05-MS02                    Multisegment 2
+           |---   6200-PR-H10-GR14-HPT2                    HPT 2
+           |---   6200-PR-H20-GR04-SCHU-PRES               Schuler Presse
+           |---   6200-PR-H20-GR05-SCHA-PRES-002           Schaal Segment Papier Presse 2
+           |---   6200-PR-H20-GR05-SCHA-PRES-004           Schaal Segment Papier Presse 4
+           |---   6200-PR-H20-GR05-SCHA-PRES-005           Schaal Segment Papier Presse 5
+           |---   6200-PR-H20-GR05-SCHA-PRES-006           Schaal Segment Papier Presse 6
+           |---   6200-PR-H21-GR11-PIA0                    "Papierimprägnieranlage ""PIA"""
+           |---   6200-PR-H30                              Halle 3
+           |---   6200-PR-H30-GR00-MS  -ALLE               Multisegment alle
+           |---   6200-PR-H30-GR00-MS16                    Multisegment 16
+           |---   6200-PR-H30-GR00-SEXT-0002               Sexta 2 / MS 16
+           |---   6200-PR-H30-GR02-SEXT-0001               Sexta 1 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0002               Sexta 2 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0003               Sexta 3 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0004               Sexta 4 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0005               Sexta 5 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0013               Sexta 13 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0014               Sexta 14 Konventionell
+           |---   6200-PR-H30-GR02-SEXT-0015               Sexta 15 Konventionell
+           |---   6200-PR-H30-GR06-FRAE-00                 Fräsmaschine 0
+           |---   6200-PR-H30-GR06-FRAE-01                 Fräsmaschine 1
+           |--    6200-PR-KSB                              Ketsch S&B
+           |   |
+           |   |---   6200-PR-KSB-GR03-KASC-PRES               Kaschierpresse
+           |   |---   6200-PR-KSB-GR03-TVD0-MONT               TVD Montage Presse Hydrap
+           |   |---   6200-PR-KSB-GR05-CCKA                    Coil zu Coil Umwickler mit Kalandrierung
+           |   |---   6200-PR-KSB-GR05-KALI                    Kalibrieranlage INMA
+           |   |---   6200-PR-KSB-GR05-SCHN                    Schneidmaschine HSM
+           |
+           |--    6200-PR-RNW                              Rhein Neckar Werkstatt HD
+           |   |
+           |   |---   6200-PR-RNW-GR05-ROND-STAN               Rondenstanze Zechel
+           |   |---   6200-PR-RNW-GR05-SCHU-PRES               Papier Presse Schuler 63 T
+           |
+           |--    6200-TE-H30                              Halle 3
+               |
+               |---   6200-TE-H30-GR43-ABLU-SOZI-RAU           Halle 3 Technik Abluft Anlage Sozialräum
+               |---   6200-TE-H30-GR43-DRUC-LUFT-VER           Halle 3 Technik Druckluftversorgung
+               |---   6200-TE-H30-GR43-HEIZ                    Halle 3 Technik Heizung
+               |---   6200-TE-H30-GR43-KUEH-WASS-VER           Halle 3 Technik Kühlwasserversorgung
+               |---   6200-TE-H30-GR43-LIFT                    Halle 3 Technik Hänel Lift
+               |---   6200-TE-H30-GR43-LUFT                    Halle 3 Technik Hallen Be-und Entlüftung
+               |---   6200-TE-H30-GR43-NASS-ABSC               Halle 3 Technik Nass Abscheider
+               |---   6200-TE-H30-GR43-SCHN-ABSA               Halle 3 Technik Schipsel Absaugung
+               |---   6200-TE-H30-GR43-SPAN-VERS               Halle 3 Technik Stromversorgung
+               |---   6200-TE-H30-GR43-STAU-ABSA               Halle 3 Technik Staub Absaugung
+               |---   6200-TE-H30-GR43-TORE                    Halle 3 Technik Tore
+               |---   6200-TE-H30-GR43-WAAG                    Halle 3 Technik Boden Waage
+               |---   6200-TE-H30-GR43-WARM-LUFT-ABS           Halle 3 Technik Warm Luft Absaugung
