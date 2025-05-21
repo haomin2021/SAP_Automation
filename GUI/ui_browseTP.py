@@ -22,9 +22,10 @@ class HierarchyTreeBuilder:
         return self.tree
 
 
-class TechnischerPlatzViewer(tk.Tk):
-    def __init__(self):
-        super().__init__()
+class TechnischerPlatzViewer(tk.Toplevel):
+    def __init__(self, master=None, on_select=None):
+        super().__init__(master)
+        self.on_select = on_select
         self.title("Technischer Platz Tree - Tkinter")
         self.geometry("800x600")
 
@@ -40,6 +41,8 @@ class TechnischerPlatzViewer(tk.Tk):
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
         scrollbar.pack(side="right", fill="y")
+
+        self.tree.bind("<Double-1>", self.on_item_select)
 
     def load_html(self):
         path = filedialog.askopenfilename(filetypes=[("HTML files", "*.html *.htm")])
@@ -78,6 +81,16 @@ class TechnischerPlatzViewer(tk.Tk):
             children = value["children"]
             item_id = self.tree.insert(parent_id, "end", text=key, values=(desc,))
             self.populate_tree(children, item_id)
+
+    def on_item_select(self, event):
+        item_id = self.tree.selection()
+        if not item_id:
+            return
+        item_id = item_id[0]
+        tp_code = self.tree.item(item_id, "text")
+        if self.on_select:
+            self.on_select(tp_code)
+        self.destroy()
 
 
 if __name__ == '__main__':

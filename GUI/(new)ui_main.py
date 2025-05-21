@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext
+from ui_browseTP import TechnischerPlatzViewer
 
 class SAP_IA11UploaderApp(tk.Tk):
     def __init__(self, start_callback):
@@ -140,15 +141,16 @@ class SAP_IA11UploaderApp(tk.Tk):
 
     def browse_tplnr(self, entry_widget):
         '''
-            Open a file dialog to select a Technischer Platz and insert the selected path into the entry widget.
+            Open a tree-based Technischer Platz selector window and set the selected code into the entry widget.
 
             Args:
-                entry_widget (tk.Entry): The entry widget where the selected Technischer Platz will be inserted.
+                entry_widget (tk.Entry): The entry widget where the selected TP code will be inserted.
         '''
-        tplnr = filedialog.askopenfilename(filetypes=[("TPLNR files", "*.tplnr")])
-        if tplnr:
+        def on_select(tp_code):
             entry_widget.delete(0, tk.END)
-            entry_widget.insert(0, tplnr)
+            entry_widget.insert(0, tp_code)
+
+        TechnischerPlatzViewer(master=self, on_select=on_select)
 
     def start_all(self):
         '''

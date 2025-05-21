@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox, scrolledtext
+from ui_browseTP import TechnischerPlatzViewer
 
 class SAPUploaderApp(tk.Frame):
     def __init__(self, master, start_callback):

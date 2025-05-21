@@ -8,6 +8,10 @@ myenv/
 *.html
 *.htm
 
+Resources/TechnischerPlatz/0.txt
+Resources/TechnischerPlatz/1.txt
+Resources/TechnischerPlatz/2.rtf
+
 # Ignore Python cache files
 __pycache__/
 *.py[cod]
@@ -16,3 +20,5 @@ __pycache__/
 build/
 dist/
 *.spec
+
+
