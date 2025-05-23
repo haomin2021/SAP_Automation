@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext
-from ui_browseTP import TechnischerPlatzViewer
+from GUI.ui_browseTP import TechnischerPlatzViewer
 
 class SAP_IA11UploaderApp(tk.Tk):
     def __init__(self, start_callback):
