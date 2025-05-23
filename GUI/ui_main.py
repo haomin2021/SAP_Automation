@@ -45,7 +45,7 @@ class SAP_IA11UploaderApp(tk.Tk):
         button_frame.pack(pady=5)
 
         tk.Button(button_frame, text="+ Add Block", command=self.add_block).pack(side="left", padx=5)
-        tk.Button(button_frame, text="Start Import", bg="green", fg="white", command=self.start_all).pack(side="left", padx=5)
+        tk.Button(button_frame, text="Start Import", bg="green", fg="white", command=self.collect_block_info).pack(side="left", padx=5)
         tk.Button(button_frame, text="Stop Import", bg="red", fg="white", command=self.stop_import).pack(side="left", padx=5)
 
         # Log Area
@@ -146,36 +146,38 @@ class SAP_IA11UploaderApp(tk.Tk):
             Args:
                 entry_widget (tk.Entry): The entry widget where the selected TP code will be inserted.
         '''
-        from ui_browseTP import get_tp_html_path
-        html_file = get_tp_html_path()
         def on_select(tp_code):
             entry_widget.delete(0, tk.END)
             entry_widget.insert(0, tp_code)
 
-        viewer = TechnischerPlatzViewer(master=self, on_select=on_select, html_path=html_file)
-        viewer.grab_set()
+        TechnischerPlatzViewer(master=self, on_select=on_select)
 
-    def start_all(self):
-        '''
-            Iterate through all blocks and execute the start callback with the provided parameters.
+    def collect_block_info(self):
+        """
+        Collects all block inputs as a list of dictionaries.
+        Each block must have a file path and Technischer Platz; otherwise it will be skipped.
+        
+        Returns:
+            List[Dict[str, str]]: A list of valid blocks with keys: file, tplnr, mode
+        """
+        collected_block_info = []
 
-            Each block's file path, Technischer Platz, and read mode are retrieved and passed to the start callback.
-            If any required field is missing, a log message is generated.
-        '''
         for i, block in enumerate(self.blocks):
             file_path = block["file_entry"].get()
             tplnr = block["tplnr_entry"].get()
             mode = block["mode_var"].get()
 
             if not file_path or not tplnr:
-                self.log(f"[Block {i+1}] Missing file or Technischer Platz.")
+                self.log(f"[Block {i+1}] Skipped: Missing file or Technischer Platz.")
                 continue
 
-            self.log(f"--- Block {i+1} ---")
-            self.log(f"File: {file_path}")
-            self.log(f"TPLNR: {tplnr}")
-            self.log(f"Mode: {mode}")
-            self.start_callback(file_path, tplnr, mode)
+            collected_block_info.append({
+                "file": file_path,
+                "tplnr": tplnr,
+                "mode": mode
+            })
+
+        return collected_block_info
 
     def log(self, message):
         '''
@@ -196,3 +198,13 @@ def dummy_start(file, tplnr, mode):
 if __name__ == "__main__":
     app = SAP_IA11UploaderApp(start_callback=dummy_start)
     app.mainloop()
+
+
+
+
+
+
+
+
+
+

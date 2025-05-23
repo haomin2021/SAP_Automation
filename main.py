@@ -42,15 +42,11 @@ class SAPController:
             
 #################### Example Usage ####################
 if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("SAP IA11 Batch Operation Import Tool")
-    root.geometry("700x500")
 
     controller = None  
     def start_import():
         controller.start_import()
-    app_ui = SAP_IA11UploaderApp(root, start_callback=start_import)
+    app_ui = SAP_IA11UploaderApp(start_callback=start_import)
     controller = SAPController(app_ui)
-    app_ui.pack(fill="both", expand=True)
 
-    root.mainloop()
+    app_ui.mainloop()
