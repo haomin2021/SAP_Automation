@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext
-from ui_browseTP import TechnischerPlatzViewer
+from GUI.ui_browseTP import TechnischerPlatzViewer
 
 class SAP_IA11UploaderApp(tk.Tk):
     def __init__(self, start_callback):
@@ -146,11 +146,15 @@ class SAP_IA11UploaderApp(tk.Tk):
             Args:
                 entry_widget (tk.Entry): The entry widget where the selected TP code will be inserted.
         '''
+        from GUI.ui_browseTP import get_tp_html_path
+        
         def on_select(tp_code):
             entry_widget.delete(0, tk.END)
             entry_widget.insert(0, tp_code)
 
-        TechnischerPlatzViewer(master=self, on_select=on_select)
+        html_path = get_tp_html_path()
+        viewer = TechnischerPlatzViewer(master=self, on_select=on_select, html_path=html_path)
+        viewer.grab_set()  # Make the viewer modal
 
     def collect_block_info(self):
         """
