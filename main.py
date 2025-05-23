@@ -11,29 +11,39 @@ class SAPController:
 
     def start_import(self):
         try:
+            block_info = self.ui.collect_block_info()
+            if not block_info:
+                messagebox.showwarning("No Valid Blocks", "No valid blocks found to process.")
+                return
+
             # 1. Connect to SAP
             sap = SAPSession()
             self.ui.log("✅ Connected to SAP")
-
-            technischer_platz = self.ui.get_tplnr().strip()
-            if not technischer_platz:
-                messagebox.showwarning("Input Required", "Please enter Technischen Platz.")
-                return
-
             # 2. Create IA11 transaction handler
             ia11 = IA11Transaction(sap.session)
 
-            # 3. Open IA11 transaction
-            ia11.open(technischer_platz)
-            self.ui.log(f"✅ IA11 opened for {technischer_platz}")
+            for i, block in enumerate(block_info):
+                file_path = block["file"]
+                tplnr = block["tplnr"]
+                mode = block["mode"]
 
-            # 4. Load Excel
-            df = load_excel(self.ui.get_file_path(), mode=self.ui.get_mode())
-            self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
+                self.ui.log(f"\n🔄 Processing Block {i+1}")
+                self.ui.log(f"📁 File: {file_path}")
+                self.ui.log(f"🏷️ TPLNR: {tplnr}")
+                self.ui.log(f"📊 Mode: {mode}")
 
-            # 5. Execute batch operation creation
-            ia11.fill_operations(df, self.ui.log)
-            self.ui.log("🎉 All lines completed successfully")
+                # 3. Open IA11 transaction for the current block
+                ia11.open(tplnr)
+                self.ui.log(f"✅ IA11 opened for {tplnr}")
+
+                # 4. Load Excel file
+                df = load_excel(file_path, mode=mode)
+                self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
+
+                # 5. Execute batch operation creation
+                ia11.fill_operations(df, self.ui.log)
+
+            self.ui.log("\n🎉 All lines completed successfully")
 
         except Exception as e:
             messagebox.showerror("Error", str(e))
