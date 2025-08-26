@@ -9,14 +9,14 @@ def load_excel(file_path, mode='raw'):
         - Title -> Section -> Task Description
     """
     # --------------Mode 'raw'--------------
-    if mode == 'raw':
+    if mode == 'Raw':
         try:
             return pd.read_excel(file_path, header=None)
         except Exception as e:
             raise RuntimeError("Failed to load Excel file:\n" + str(e))
         
     # --------------Mode 'structured'--------------
-    elif mode == 'structured':    
+    elif mode == 'Structured':
         try:
             wb = load_workbook(file_path)
             sheet = wb.active

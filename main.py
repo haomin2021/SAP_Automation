@@ -8,8 +8,11 @@ from GUI.ui_main import SAP_IA11UploaderApp
 class SAPController:
     def __init__(self, ui):
         self.ui = ui
+        self._cancelled = False
 
     def start_import(self):
+        self._cancelled = False
+
         try:
             block_info = self.ui.collect_block_info()
             if not block_info:
@@ -23,6 +26,10 @@ class SAPController:
             ia11 = IA11Transaction(sap.session)
 
             for i, block in enumerate(block_info):
+                if self._cancelled:
+                    self.ui.log("❌ Import cancelled.")
+                    break
+
                 file_path = block["file"]
                 tplnr = block["tplnr"]
                 mode = block["mode"]
@@ -33,30 +40,49 @@ class SAPController:
                 self.ui.log(f"📊 Mode: {mode}")
 
                 # 3. Open IA11 transaction for the current block
-                ia11.open(tplnr)
-                self.ui.log(f"✅ IA11 opened for {tplnr}")
+                try:
+                    ia11.open(tplnr)
+                    self.ui.log(f"✅ IA11 opened for {tplnr}")
+                except Exception as e_open:
+                    self.ui.log(f"❌ Fail to open IA11(block {i}): {e_open}")
+                    continue
 
                 # 4. Load Excel file
-                df = load_excel(file_path, mode=mode)
+                try:
+                    df = load_excel(file_path, mode=mode)                    
+                except Exception as e_load:
+                    self.ui.log(f"❌ Fail to load Excel(block {i}): {e_load}")
+                    continue
+
                 self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
 
                 # 5. Execute batch operation creation
-                ia11.fill_operations(df, self.ui.log)
+                try:
+                    ia11.fill_operations(df, self.ui.log)
+                except Exception as e_fill:
+                    self.ui.log(f"❌ Fail to fill operations(block {i}): {e_fill}")
+                    continue
 
-            self.ui.log("\n🎉 All lines completed successfully")
+            if not self._cancelled:
+                self.ui.log("\n🎉 All lines completed successfully")
 
         except Exception as e:
             messagebox.showerror("Error", str(e))
             self.ui.log(f"❌ {e}")
 
+    def cancel_import(self):
+        self._cancelled = True
+        self.ui.log("⏹️ Stop requested by user.")
             
 #################### Example Usage ####################
 if __name__ == "__main__":
+    controller = SAPController(ui=None)
 
-    controller = None  
-    def start_import():
-        controller.start_import()
-    app_ui = SAP_IA11UploaderApp(start_callback=start_import)
-    controller = SAPController(app_ui)
+    app_ui = SAP_IA11UploaderApp(
+        start_callback=controller.start_import,   # Start Button → Controller
+        cancel_callback=controller.cancel_import    # Stop  Button → Controller
+    )
 
+    controller.ui = app_ui   # Fill back UI reference
     app_ui.mainloop()
+

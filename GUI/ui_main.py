@@ -3,7 +3,7 @@ from tkinter import filedialog, messagebox, ttk, scrolledtext
 from GUI.ui_browseTP import TechnischerPlatzViewer
 
 class SAP_IA11UploaderApp(tk.Tk):
-    def __init__(self, start_callback):
+    def __init__(self, start_callback, cancel_callback=None):
         """
             Initialize the SAP IA11 Batch Uploader interface.
 
@@ -21,6 +21,7 @@ class SAP_IA11UploaderApp(tk.Tk):
         self.title("SAP IA11 Batch Uploader")
         self.geometry("900x700")
         self.start_callback = start_callback
+        self.cancel_callback = cancel_callback
 
         self.blocks = []
 
@@ -45,8 +46,8 @@ class SAP_IA11UploaderApp(tk.Tk):
         button_frame.pack(pady=5)
 
         tk.Button(button_frame, text="+ Add Block", command=self.add_block).pack(side="left", padx=5)
-        tk.Button(button_frame, text="Start Import", bg="green", fg="white", command=self.collect_block_info).pack(side="left", padx=5)
-        tk.Button(button_frame, text="Stop Import", bg="red", fg="white", command=self.stop_import).pack(side="left", padx=5)
+        tk.Button(button_frame, text="Start Import", bg="green", fg="white", command=self.start_callback).pack(side="left", padx=5)
+        tk.Button(button_frame, text="Stop Import", bg="red", fg="white", command=(self.cancel_callback or (lambda: None))).pack(side="left", padx=5)
 
         # Log Area
         self.log_area = scrolledtext.ScrolledText(self, width=100, height=15)
@@ -124,6 +125,7 @@ class SAP_IA11UploaderApp(tk.Tk):
 
     def stop_import(self):
         # Placeholder for stopping import logic
+        self._cancelled = True
         messagebox.showinfo("Info", "Import stopped.")
         self.log("Import stopped.")
 
