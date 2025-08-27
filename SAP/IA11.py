@@ -16,8 +16,13 @@ class IA11Transaction:
         session.findById("wnd[0]/usr/ctxtPLKOD-STRAT").text = "Z7"  # Strategy
         session.findById("wnd[0]/tbar[1]/btn[16]").press()  # "Operation"
 
-    def fill_operations(self, df, log_callback):
+    def fill_operations(self, df, log_callback, should_cancel=lambda: False):
         for index, row in df.iterrows():
+            # Check for cancellation
+            if should_cancel():
+                log_callback("🚫 Operation cancelled")
+                break
+
             operation_number = str((index + 1) * 10).zfill(4)
             description_text = str(row[0])[:40]
 
@@ -33,6 +38,10 @@ class IA11Transaction:
                 continue
 
             try:
+                # Check for cancellation
+                if should_cancel():
+                    log_callback("🚫 Operation cancelled")
+                    break
                 self._select_maintenance_package(index)
             except Exception as e:
                 log_callback(f"⚠️ Wartungspaket select failed on line {index + 1}: {e}")

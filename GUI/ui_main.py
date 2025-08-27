@@ -47,7 +47,7 @@ class SAP_IA11UploaderApp(tk.Tk):
 
         tk.Button(button_frame, text="+ Add Block", command=self.add_block).pack(side="left", padx=5)
         tk.Button(button_frame, text="Start Import", bg="green", fg="white", command=self.start_callback).pack(side="left", padx=5)
-        tk.Button(button_frame, text="Stop Import", bg="red", fg="white", command=(self.cancel_callback or (lambda: None))).pack(side="left", padx=5)
+        tk.Button(button_frame, text="Stop Import", bg="red", fg="white", command=self.stop_import).pack(side="left", padx=5)
 
         # Log Area
         self.log_area = scrolledtext.ScrolledText(self, width=100, height=15)
@@ -124,10 +124,11 @@ class SAP_IA11UploaderApp(tk.Tk):
         self.blocks.remove(block)
 
     def stop_import(self):
-        # Placeholder for stopping import logic
-        self._cancelled = True
-        messagebox.showinfo("Info", "Import stopped.")
-        self.log("Import stopped.")
+        if self.cancel_callback:
+            self.cancel_callback()   
+            self.log("⏹️ Stop requested.")
+        else:
+            self.log("⚠️ No cancel_callback provided.")
 
     def browse_file(self, entry_widget):
         '''
