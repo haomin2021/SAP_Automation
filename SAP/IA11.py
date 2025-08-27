@@ -47,6 +47,55 @@ class IA11Transaction:
                 log_callback(f"⚠️ Wartungspaket select failed on line {index + 1}: {e}")
 
             log_callback(f"✅ Line {index + 1} completed")
+    
+    def fill_operation_step(self, df, row_idx, log):
+        """
+        执行“第 row_idx 行”的录入；成功或失败都返回 True 表示继续下一行；
+        当 row_idx >= len(df) 时返回 False 表示本 block 完成。
+        """
+        if row_idx >= len(df):
+            return False
+
+        s = self.session
+        row = df.iloc[row_idx]
+
+        operation_number = str((row_idx + 1) * 10).zfill(4)
+        description_text = str(row.iloc[0])[:40]
+
+        # 滚动到可见区（0..15）
+        if row_idx >= 16:
+            scroll_position = max(0, row_idx - 15)
+            s.findById("wnd[0]/usr/tblSAPLCPDITCTRL_3400").verticalScrollbar.position = scroll_position
+            time.sleep(0.05)  # VERY SHORT，避免卡 UI
+
+        vis_idx = min(row_idx, 15)
+        op_id   = f"wnd[0]/usr/tblSAPLCPDITCTRL_3400/txtPLPOD-VORNR[0,{vis_idx}]"
+        desc_id = f"wnd[0]/usr/tblSAPLCPDITCTRL_3400/txtPLPOD-LTXA1[5,{vis_idx}]"
+
+        try:
+            s.findById(op_id).setFocus();   s.findById(op_id).text  = operation_number
+            s.findById(desc_id).setFocus(); s.findById(desc_id).text = description_text
+            s.findById(desc_id).caretPosition = len(description_text)
+        except Exception as e:
+            log(f"❌ Line {row_idx+1} failed to input: {e}")
+            return True  # 本行失败但不中断
+
+        # 维护包（允许失败）
+        try:
+            s.findById("wnd[0]/usr/btnTEXT_DRUCKTASTE_WP").press()
+            time.sleep(0.05)
+            wp_chk = f"wnd[0]/usr/tblSAPLCPDITCTRL_3600/chkRIHSTRAT-MARK01[3,{vis_idx}]"
+            s.findById(wp_chk).selected = True
+            s.findById(wp_chk).setFocus()
+            try:
+                s.findById("wnd[0]/tbar[1]/btn[26]").press()
+            except:
+                s.findById("wnd[0]").sendVKey(12)
+        except Exception as e:
+            log(f"⚠️ Wartungspaket select failed on line {row_idx+1}: {e}")
+
+        log(f"✅ Line {row_idx+1} completed")
+        return True
 
     def _input_operation(self, index, operation_number, description_text):
         session = self.session

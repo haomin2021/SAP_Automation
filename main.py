@@ -58,7 +58,7 @@ class SAPController:
 
                 # 5. Execute batch operation creation
                 try:
-                    ia11.fill_operations(df, self.ui.log, should_cancel=lambda: self._cancelled)
+                    ia11.fill_operations_step(df, self.ui.log, should_cancel=lambda: self._cancelled)
                 except Exception as e_fill:
                     self.ui.log(f"❌ Fail to fill operations(block {i}): {e_fill}")
                     continue
