@@ -8,15 +8,16 @@ def load_excel(file_path, mode='raw'):
     = Mode = 'structured': Load the file and parse it into a structured DataFrame.
         - Title -> Section -> Task Description
     """
+    mode = (mode or "raw").strip().lower()
     # --------------Mode 'raw'--------------
-    if mode == 'Raw':
+    if mode == 'raw':
         try:
             return pd.read_excel(file_path, header=None)
         except Exception as e:
             raise RuntimeError("Failed to load Excel file:\n" + str(e))
         
     # --------------Mode 'structured'--------------
-    elif mode == 'Structured':
+    elif mode == 'structured':
         try:
             wb = load_workbook(file_path)
             sheet = wb.active

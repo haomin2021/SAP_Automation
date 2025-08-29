@@ -5,74 +5,109 @@ from SAP.IA11 import IA11Transaction  # 🔥 引入新的 IA11模块
 from DataLoader.excel_loader import load_excel
 from GUI.ui_main import SAP_IA11UploaderApp
 
+# controller.py
 class SAPController:
     def __init__(self, ui):
         self.ui = ui
         self._cancelled = False
+        self._ctx = None
 
     def start_import(self):
         self._cancelled = False
 
-        try:
-            block_info = self.ui.collect_block_info()
-            if not block_info:
-                messagebox.showwarning("No Valid Blocks", "No valid blocks found to process.")
-                return
+        blocks = self.ui.collect_block_info()
+        if not blocks:
+            messagebox.showwarning("No Valid Blocks", "No valid blocks found to process.")
+            return
 
-            # 1. Connect to SAP
-            sap = SAPSession()
-            self.ui.log("✅ Connected to SAP")
-            # 2. Create IA11 transaction handler
-            ia11 = IA11Transaction(sap.session)
+        sap = SAPSession()
+        ia11 = IA11Transaction(sap.session)
+        self.ui.log("✅ Connected to SAP")
 
-            for i, block in enumerate(block_info):
-                if self._cancelled:
-                    self.ui.log("❌ Import cancelled.")
-                    break
-
-                file_path = block["file"]
-                tplnr = block["tplnr"]
-                mode = block["mode"]
-
-                self.ui.log(f"\n🔄 Processing Block {i+1}")
-                self.ui.log(f"📁 File: {file_path}")
-                self.ui.log(f"🏷️ TPLNR: {tplnr}")
-                self.ui.log(f"📊 Mode: {mode}")
-
-                # 3. Open IA11 transaction for the current block
-                try:
-                    ia11.open(tplnr)
-                    self.ui.log(f"✅ IA11 opened for {tplnr}")
-                except Exception as e_open:
-                    self.ui.log(f"❌ Fail to open IA11(block {i}): {e_open}")
-                    continue
-
-                # 4. Load Excel file
-                try:
-                    df = load_excel(file_path, mode=mode)                    
-                except Exception as e_load:
-                    self.ui.log(f"❌ Fail to load Excel(block {i}): {e_load}")
-                    continue
-
-                self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
-
-                # 5. Execute batch operation creation
-                try:
-                    ia11.fill_operations_step(df, self.ui.log, should_cancel=lambda: self._cancelled)
-                except Exception as e_fill:
-                    self.ui.log(f"❌ Fail to fill operations(block {i}): {e_fill}")
-                    continue
-
-            if not self._cancelled:
-                self.ui.log("\n🎉 All lines completed successfully")
-
-        except Exception as e:
-            messagebox.showerror("Error", str(e))
-            self.ui.log(f"❌ {e}")
+        self._ctx = {"blocks": blocks, "bi": 0, "ia11": ia11, "df": None, "ri": 0}
+        self.ui.after(0, self._step_block_begin)
 
     def cancel_import(self):
         self._cancelled = True
         self.ui.log("⏹️ Stop requested by user.")
+
+    def _step_block_begin(self):
+        if self._cancelled:
+            return self.ui.log("⏹️ 导入已被用户中断")
+
+        ctx = self._ctx
+        blocks, bi, ia11 = ctx["blocks"], ctx["bi"], ctx["ia11"]
+        if bi >= len(blocks):
+            return self.ui.log("\n🎉 All blocks completed successfully")
+
+        b = blocks[bi]
+        file_path, tplnr = b["file"], b["tplnr"]
+        mode = (b["mode"] or "").strip().lower()
+
+        self.ui.log(f"\n🔄 Processing Block {bi+1}")
+        self.ui.log(f"📁 File: {file_path}")
+        self.ui.log(f"🏷️ TPLNR: {tplnr}")
+        self.ui.log(f"📊 Mode: {mode}")
+
+        try:
+            ia11.open(tplnr)
+            self.ui.log(f"✅ IA11 opened for {tplnr}")
+        except Exception as e_open:
+            self.ui.log(f"❌ open IA11 failed (block {bi+1}): {e_open}")
+            ctx["bi"] += 1
+            return self.ui.after(0, self._step_block_begin)
+
+        try:
+            df = load_excel(file_path, mode=mode)
+        except Exception as e_load:
+            self.ui.log(f"❌ load excel failed (block {bi+1}): {e_load}")
+            ctx["bi"] += 1
+            return self.ui.after(0, self._step_block_begin)
+
+        if df is None or len(df) == 0:
+            self.ui.log(f"⚠️ Empty/invalid Excel (block {bi+1}) — skipped")
+            ctx["bi"] += 1
+            return self.ui.after(0, self._step_block_begin)
+
+        self.ui.log(f"✅ Loaded Excel with {len(df)} entries")
+        self.ui.log(f"[DEBUG] df len={len(df)}")     # ← 调试
+
+        ctx["df"] = df
+        ctx["ri"] = 0
+        return self.ui.after(0, self._step_row)
+
+    def _step_row(self):
+        if self._cancelled:
+            return self.ui.log("⏹️ 导入已被用户中断")
+
+        ctx = self._ctx
+        ia11, df, ri = ctx["ia11"], ctx["df"], ctx["ri"]
+        if df is None:
+            self.ui.log("⚠️ df is None — skip block")
+            ctx["bi"] += 1
+            return self.ui.after(0, self._step_block_begin)
+
+        if ri >= len(df):
+            try:
+                ia11.save(self.ui.log)   # 可选：每块保存
+            except Exception as e:
+                self.ui.log(f"⚠️ save failed: {e}")
+            ctx["bi"] += 1
+            return self.ui.after(0, self._step_block_begin)
+
+        self.ui.log(f"[DEBUG] step row ri={ri+1}/{len(df)}")  # ← 调试
+
+        try:
+            keep = ia11.fill_operation_step(df, ri, self.ui.log)  # ← 参数顺序对
+        except Exception as e_line:
+            self.ui.log(f"❌ line {ri+1} failed: {e_line}")
+            keep = True
+
+        if keep:
+            ctx["ri"] = ri + 1
+
+        return self.ui.after(0, self._step_row)
+
             
 #################### Example Usage ####################
 if __name__ == "__main__":
